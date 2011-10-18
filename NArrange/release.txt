@@ -1,0 +1,11 @@
+*** IMPORTANT ***
+In version 0.2.7 the default configuration was changed to match the ordering rules enforced by Microsoft's C# source analysis tool StyleCop.  For those wishing to use the old default configuration, a copy has been provided in DefaultConfig.v026.xml.  Please retain a copy of this file for your usage as it may not be distributed in future releases.
+
+The following changes were made in this release:
+
+0.2.8.0
+- Fixed missing SharpZipLib assembly in MSI.
+- Fixed a C# parsing bug with using statements that redefine a generic type.
+  (Thanks to megakid for providing the parser change)
+- Fixed parsing of C# events with generic type signatures
+- Upgraded build process from MS Source Analysis to StyleCop 4.3

@@ -1,0 +1,1 @@
+CPAU.exe -dec -file "Join.1508LAN.cpj" -profile

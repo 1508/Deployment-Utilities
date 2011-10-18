@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>Help - 1508 DEPLOYMENT UTILITY SCRIPTS</TITLE>
+</HEAD>
+
+<BODY>
+
+<A NAME="Top"></A>
+
+<H1>Help - 1508 Deployment Utility Scripts</H1>
+
+<P>&nbsp;</P>
+
+<TABLE BORDER="0">
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#Clean.QA.Solution.cmd">Clean.QA.Solution.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#Clean.QA.Solution.Projects.cmd">Clean.QA.Solution.Projects.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#FILE.permission.cmd">FILE.permission.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#HELP.cmd">HELP.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#HELP.update.cmd">HELP.update.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IIS5.create.cmd">IIS5.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IIS6.create.cmd">IIS6.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IIS7.create.cmd">IIS7.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IISx.create.cmd">IISx.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IISx.vdir.cmd">IISx.vdir.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#MSSQL2008.init.cmd">MSSQL2008.init.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#MSSQL2008.Master.RecoveryModes.cmd">MSSQL2008.Master.RecoveryModes.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#MSSQL2008.Master.ShrinkDatabases.cmd">MSSQL2008.Master.ShrinkDatabases.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#NArrange.Source.cmd">NArrange.Source.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#Remove Temporary ASP.NET Files.cmd">Remove Temporary ASP.NET Files.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SQL.attach.cmd">SQL.attach.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SQL.backup.cmd">SQL.backup.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SQL.restore.cmd">SQL.restore.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#sudo.cmd">sudo.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SVN.checkout.cmd">SVN.checkout.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SVN.export.cmd">SVN.export.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#SVN.update.cmd">SVN.update.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2005.build.cmd">VS2005.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2008.build.cmd">VS2008.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2010.build.cmd">VS2010.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#wait.cmd">wait.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+</TABLE>
+
+<P>&nbsp;</P>
+
+
+<A NAME="Clean.QA.Solution.cmd"></A>
+
+<H2>Clean.QA.Solution.cmd</H2>
+
+<PRE>
+ Removes any files that are unnessesary for the solutions on a QA environment
+ 
+   CLEAN.QA.SOLUTION [path to qa solution] 
+
+   Removes/Cleans
+   - MediaCache, Viewstate under ./Website/App_Data/
+   - Sitecore ./Data/Serialized ./Data/Dump and log files under ./Data/
+   - Backups located in root of ./Databases Backup (any backup subfolders are not touched)
+   - Svn folders 
+   - Code files not located under ./Website/App_Code, ./Website/Sitecore or ./Website/Umbraco
+   - Empty folders under ./Website/Applicationcode
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="Clean.QA.Solution.Projects.cmd"></A>
+
+<H2>Clean.QA.Solution.Projects.cmd</H2>
+
+<PRE>
+ Finds all project folders on QA solution drive and call CLEAN.QA.SOLUTION utility for each
+ 
+   CLEAN.QA.SOLUTION.PROJECTS [path to qa solution root] 
+ 
+   ex. clean.qa.solution.projects.cmd "s:"
+
+   For each subfolder/Project removes/Cleans
+   - MediaCache, Viewstate under ./Website/App_Data/
+   - Sitecore ./Data/Serialized ./Data/Dump and log files under ./Data/
+   - Backups located in root of ./Databases Backup (any backup subfolders are not touched)
+   - Svn folders 
+   - Code files not located under ./Website/App_Code, ./Website/Sitecore or ./Website/Umbraco
+   - Empty folders under ./Website/Applicationcode
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="FILE.permission.cmd"></A>
+
+<H2>FILE.permission.cmd</H2>
+
+<PRE>
+ Set ACL change access to the Network Service on the specified path
+   
+   FILE.permission.cmd [path]
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="HELP.cmd"></A>
+
+<H2>HELP.cmd</H2>
+
+<PRE>
+  Displays help.htm
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="HELP.update.cmd"></A>
+
+<H2>HELP.update.cmd</H2>
+
+<PRE>
+  Generates help.htm
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="IIS5.create.cmd"></A>
+
+<H2>IIS5.create.cmd</H2>
+
+<PRE>
+ Setup XP IIS 5.1 default root to Website and run aspnetregiis
+
+ IIS5.CREATE webroot aspnetframework_regiis_path
+
+ webroot     Specifies the site path 
+ aspnetframework_regiis_path
+             Specifies the path to the framework regiis file
+
+  Step 1:   Validate System
+  Step 2:   Override Website Root
+  Step 3:   Register Asp.Net with "aspnet_regiis -s w3svc" on all Sites,
+            this overrides any custom asp.net site settings
+
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="IIS6.create.cmd"></A>
+
+<H2>IIS6.create.cmd</H2>
+
+<PRE>
+  Creates IIS6 Website and App Pool
+
+  IIS6.CREATE webroot hostheader webname appname aspnetframework_regiis_path
+
+  webroot     Specifies the site path 
+  hostheader  Specifies the hostheader names (will always bind to :80)
+              Can be set empty and can set multiple by separating with comma
+              (Will create a website with each hostheader)
+  webname     Specifies the site name 
+  appname     Specifies the name of the application pool to bind to
+  aspnetframework_regiis_path
+              Specifies the path to the framework regiis file
+
+
+  Step 1:   Validate System
+  Step 2:   Create Backup of IIS (can be restored in IIS Backup/Restore)
+  Step 3:   Stop default website and sharepoint admin website (W3SVC/1 and /2) 
+            Default webs are unsuitable for development and hosting.
+  Step 4:   Create ApplicationPool 
+  Step 5:   Create Website  () 
+  Step 6:   Register Asp.Net with "aspnet_regiis -s w3svc" on all Sites,
+            this overrides any custom asp.net site settings
+ 
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="IIS7.create.cmd"></A>
+
+<H2>IIS7.create.cmd</H2>
+
+<PRE>
+
+  Creates IIS7 Website and App Pool
+
+  IIS7.CREATE webroot hostheader webname appname aspnetframework_regiis_path managedPipelineMode bin
+
+  webroot     Specifies the site path 
+  hostheader  Specifies the hostheader names (will always bind to :80)
+              Can be set empty and can set multiple by separating with comma
+  webname     Specifies the site name 
+  appname     Specifies the name of the application pool to bind to
+  aspnetframework_regiis_path
+              Specifies the path to the framework regiis file
+  managedPipelineMode 
+              Classic or Integrated (default is Classic)
+  bin         Specifies the folder for the global script utilities
+
+  Step 1:   Validate System
+  Step 2:   Create Configuration Backup 
+  Step 3:   If hostheader not provided Stops all other websites (W3SVC/x)
+  Step 4:   Create ApplicationPool  
+  Step 5:   Create Website  () 
+  Step 6:   Set Framework version on Application Pool Site
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="IISx.create.cmd"></A>
+
+<H2>IISx.create.cmd</H2>
+
+<PRE>
+ Choose system and redirect parameters to valid IIS system.
+
+   IISx.create WEBROOT HOSTHEADER WEBNAME APPNAME ASPNETFRAMEWORK_REGIIS_PATH (managedPipelineMode)
+
+   HOSTHEADER           Can be comma separated but only IIS7 will interpret this. IIS6 will create separate websites for each hostheader
+   managedPipelineMode  Used by IIS7, default is classic but "Integrated" can be set for the website app pool.
+
+ Example:
+ .\IISx.create.bat"  "D:\SDU776.0507\WebSite" "sdu.local,sdunet.local" "SDU776 SDU Intranet" "SDU776 AppPool" "C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe"
+
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="IISx.vdir.cmd"></A>
+
+<H2>IISx.vdir.cmd</H2>
+
+<PRE>
+ Creates a virtual directories 
+  
+ IISX.VDIR "" "" ""
+ IISX.VDIR webname vdirname vdirroot
+
+   webname   Specifies the website name 
+   vdirname  Specifies the name of the virtual directory
+   vdirroot  Specifies the path of the virtual directory
+
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="MSSQL2008.init.cmd"></A>
+
+<H2>MSSQL2008.init.cmd</H2>
+
+<PRE>
+ Enable Sql LoginMode and restarts MSSQLSERVER 
+   
+   MSSQL2008.init.cmd [login] [password]
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="MSSQL2008.Master.RecoveryModes.cmd"></A>
+
+<H2>MSSQL2008.Master.RecoveryModes.cmd</H2>
+
+<PRE>
+ Set recovery mode simple on all database on specified server (except system database)
+   
+   MSSQL2008.Master.RecoveryModes.cmd [server] [login] [password]
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="MSSQL2008.Master.ShrinkDatabases.cmd"></A>
+
+<H2>MSSQL2008.Master.ShrinkDatabases.cmd</H2>
+
+<PRE>
+ Shrink all databases on specified server (except system database)
+   
+   MSSQL2008.Master.ShrinkDatabases.cmd [server] [login] [password]
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="NArrange.Source.cmd"></A>
+
+<H2>NArrange.Source.cmd</H2>
+
+<PRE>
+ Arrange source code based on a visual studio project file
+   
+   Set as pre-build event:
+   \\QA\utilities\Deployment\NArrange.Source.cmd "$(SolutionPath)"
+   
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="Remove Temporary ASP.NET Files.cmd"></A>
+
+<H2>Remove Temporary ASP.NET Files.cmd</H2>
+
+<PRE>
+Removes temporary ASP.NET files
+
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SQL.attach.cmd"></A>
+
+<H2>SQL.attach.cmd</H2>
+
+<PRE>
+ Attach *.mdf and *.ldf files from disk
+   
+   SQL.attach.bat [server] [user] [password] [path] [ExpectedCount]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SQL.backup.cmd"></A>
+
+<H2>SQL.backup.cmd</H2>
+
+<PRE>
+ Backup running databases with to disk
+   
+   SQL.backup.bat [server] [user] [password] [pattern] [path] 
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SQL.restore.cmd"></A>
+
+<H2>SQL.restore.cmd</H2>
+
+<PRE>
+ Restore databases from disk
+   
+   SQL.restore.bat [server] [user] [password] [path from] [path to] [ExpectedCount] ([Custom date format or *])
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="sudo.cmd"></A>
+
+<H2>sudo.cmd</H2>
+
+<PRE>
+ Provides a command line method of launching applications that prompt for elevation (Run as Administrator) on Windows Vista.
+   
+   sudo [command]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SVN.checkout.cmd"></A>
+
+<H2>SVN.checkout.cmd</H2>
+
+<PRE>
+ Check out SVN archive
+   
+   SVN.checkout.cmd [svn path] [path]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SVN.export.cmd"></A>
+
+<H2>SVN.export.cmd</H2>
+
+<PRE>
+ Export SVN archive
+   
+   SVN.export.cmd [svn path] [path]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="SVN.update.cmd"></A>
+
+<H2>SVN.update.cmd</H2>
+
+<PRE>
+ Update SVN folder
+   
+   SVN.update.cmd [path]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="VS2005.build.cmd"></A>
+
+<H2>VS2005.build.cmd</H2>
+
+<PRE>
+  Build solution and start developer environment
+   
+   VS2005.build.cmd [solution filepath]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="VS2008.build.cmd"></A>
+
+<H2>VS2008.build.cmd</H2>
+
+<PRE>
+  Build solution and start developer environment
+   
+   VS2008.build.cmd [solution filepath]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="VS2010.build.cmd"></A>
+
+<H2>VS2010.build.cmd</H2>
+
+<PRE>
+  Build solution and start developer environment
+   
+   VS2010.build.cmd [solution filepath]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="wait.cmd"></A>
+
+<H2>wait.cmd</H2>
+
+<PRE>
+  Wait the amount of seconds before continuing
+ 
+    WAIT [seconds]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<P>This file was generated by:
+<B>HELP.update.cmd</B>, Version 1.00</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,1 @@
+CPAU.exe -dec -file "test.cpj" -profile

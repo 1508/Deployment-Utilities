@@ -1,0 +1,1 @@
+CPAU.exe -u administrator -p localAdminPassw0rd -ex "Test.Parameters.bat Param1 Param2" -enc -file "test.cpj" -crc "Test.Parameters.bat"

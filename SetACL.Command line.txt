@@ -1,0 +1,326 @@
+SetACL by Helge Klein
+
+Homepage:        http://setacl.sourceforge.net
+Version:         2.0.3.0
+Copyright:       Helge Klein
+License:         GPL
+
+-O-P-T-I-O-N-S--------------------------------------------------------
+
+-on    ObjectName
+
+-ot    ObjectType
+
+-actn  Action
+
+-ace   "n:Trustee;p:Permission;s:IsSID;i:Inheritance;m:Mode;w:Where"
+
+-trst  "n1:Trustee;n2:Trustee;s1:IsSID;s2:IsSID;ta:TrusteeAction;w:Where"
+
+-dom   "n1:Domain;n2:Domain;da:DomainAction;w:Where"
+
+-ownr  "n:Trustee;s:IsSID"
+
+-grp   "n:Trustee;s:IsSID"
+
+-rec   Recursion
+
+-op    "dacl:Protection;sacl:Protection"
+
+-rst   Where
+
+-lst   "f:Format;w:What;i:ListInherited;s:DisplaySID"
+
+-bckp  Filename
+
+-log   Filename
+
+-fltr  Keyword
+
+-clr   Where
+
+-silent
+
+-ignoreerr
+
+-P-A-R-A-M-E-T-E-R-S-------------------------------------------------
+
+ObjectName:      Name of the object to process (e.g. 'c:\mydir')
+
+ObjectType:      Type of object:
+
+                 file:       Directory/file
+                 reg:        Registry key
+                 srv:        Service
+                 prn:        Printer
+                 shr:        Network share
+
+Action:          Action(s) to perform:
+
+                 ace:        Process ACEs specified by parameter(s) '-ace'
+                 trustee:    Process trustee(s) specified by parameter(s)
+                             '-trst'.
+                 domain:     Process domain(s) specified by parameter(s)
+                             '-dom'.
+                 list:       List permissions. A backup file can be
+                             specified by parameter '-bckp'. Controlled by
+                             parameter '-lst'.
+                 restore:    Restore entire security descriptors backed up
+                             using the list function. A file containing the
+                             backup has to be specified using the parameter
+                             '-bckp'. The listing has to be in SDDL format.
+                 setowner:   Set the owner to trustee specified by parameter
+                             '-ownr'.
+                 setgroup:   Set the primary group to trustee specified by
+                             parameter '-grp'.
+                 clear:      Clear the ACL of any non-inherited ACEs. The
+                             parameter '-clr' controls whether to do this for
+                             the DACL, the SACL, or both.
+                 setprot:    Set the flag 'allow inheritable permissions from
+                             the parent object to propagate to this object' to
+                             the value specified by parameter '-op'.
+                 rstchldrn:  Reset permissions on all sub-objects and enable
+                             propagation of inherited permissions. The
+                             parameter '-rst' controls whether to do this for
+                             the DACL, the SACL, or both.
+
+TrusteeAction:   Action to perform on trustee specified:
+
+                 remtrst:    Remove all ACEs belonging to trustee specified.
+                 repltrst:   Replace trustee 'n1' by 'n2' in all ACEs.
+                 cpytrst:    Copy the permissions for trustee 'n1' to 'n2'.
+
+DomainAction:    Action to perform on domain specified:
+
+                 remdom:     Remove all ACEs belonging to trustees of domain
+                             specified.
+                 repldom:    Replace trustees from domain 'n1' by trustees with
+                             same name from domain 'n2' in all ACEs.
+                 cpydom:     Copy permissions from trustees from domain 'n1' to
+                             trustees with same name from domain 'n2' in all
+                             ACEs.
+
+Trustee:         Name or SID of trustee (user or group). Format:
+                 
+                 a) [(computer | domain)\]name
+                 
+                 Where:
+                 
+                 computer:   DNS or NetBIOS name of a computer -> 'name' must
+                             be a local account on that computer.
+                 domain:     DNS or NetBIOS name of a domain -> 'name' must
+                             be a domain user or group.
+                 name:       user or group name
+                 
+                 If no computer or domain name is given, SetACL tries to find
+                 a SID for 'name' in the following order:
+                 
+                 1. built-in accounts and well-known SIDs
+                 2. local accounts
+                 3. primary domain
+                 4. trusted domains
+                 
+                 b) SID string
+
+Domain:          Name of a domain (NetBIOS or DNS name).
+
+Permission:      Permission to set. Validity of permissions depends on the
+                 object type (see below). Comma separated list.
+
+                 Example:    'read,write_ea,write_dacl'
+
+IsSID:           Is the trustee name a SID?
+
+                 y:          Yes
+                 n:          No
+
+DisplaySID:      Display trustee names as SIDs?
+
+                 y:          Yes
+                 n:          No
+                 b:          Both (names and SIDs)
+
+Inheritance:     Inheritance flags for the ACE. This may be a comma separated
+                 list containing the following:
+
+                 so:         sub-objects
+                 sc:         sub-containers
+                 np:         no propagation
+                 io:         inherit only
+                 
+                 Example:    'io,so'
+
+Mode:            Access mode of this ACE:
+
+                 a) DACL:
+
+                 set:        Replace all permissions for given trustee by
+                             those specified.
+                 grant:      Add permissions specified to existing permissions
+                             for given trustee.
+                 deny:       Deny permissions specified.
+                 revoke:     Remove permissions specified from existing
+                             permissions for given trustee.
+
+                 b) SACL:
+
+                 aud_succ:   Add an audit success ACE.
+                 aud_fail:   Add an audit failure ACE.
+                 revoke:     Remove permissions specified from existing
+                             permissions for given trustee.
+
+Where:           Apply settings to DACL, SACL, or both (comma separated list):
+
+                 dacl
+                 sacl
+                 dacl,sacl
+
+Recursion:       Recursion settings, depends on object type:
+
+                 a) file:
+                 
+                 no:         No recursion.
+                 cont:       Recurse, and process directories only.
+                 obj:        Recurse, and process files only.
+                 cont_obj:   Recurse, and process directories and files.
+                 
+                 b) reg:
+                 
+                 no:         Do not recurse.
+                 yes:        Do Recurse.
+
+Protection:      Controls the flag 'allow inheritable permissions from the
+                 parent object to propagate to this object':
+
+                 nc:         Do not change the current setting.
+                 np:         Object is not protected, i.e. inherits from
+                             parent.
+                 p_c:        Object is protected, ACEs from parent are
+                             copied.
+                 p_nc:       Object is protected, ACEs from parent are not
+                             copied.
+
+Format:          Which list format to use:
+
+                 sddl:       Standardized SDDL format. Only listings in this
+                             format can be restored.
+                 csv:        SetACL's csv format.
+                 tab:        SetACL's tabular format.
+
+What:            Which components of security descriptors to include in the
+                 listing. (comma separated list):
+
+                 d:          DACL
+                 s:          SACL
+                 o:          Owner
+                 g:          Primary group
+                 
+                 Example:    'd,s'
+
+ListInherited:   List inherited permissions?
+
+                 y:          Yes
+                 n:          No
+
+Filename:        Name of a (unicode) file used for list/backup/restore
+                 operations or logging.
+
+Keyword:         Keyword to filter object names by. Names containing this
+                 keyword are not processed.
+
+-R-E-M-A-R-K-S--------------------------------------------------------
+
+Required parameters (all others are optional):
+
+                 -on         (Object name)
+                 -ot         (Object type)
+
+Parameters that may be specified more than once:
+
+                 -actn       (Action)
+                 -ace        (Access control entry)
+                 -trst       (Trustee)
+                 -dom        (Domain)
+                 -fltr       (Filter keyword)
+
+Only actions specified by parameter(s) '-actn' are actually performed,
+regardless of the other options set.
+
+Order in which multiple actions are processed:
+
+                 1.          restore
+                 2.          clear
+                 3.          trustee
+                 4.          domain
+                 5.          ace, setowner, setgroup, setprot
+                 6.          rstchldrn
+                 7.          list
+
+-V-A-L-I-D--P-E-R-M-I-S-S-I-O-N-S-------------------------------------
+
+a) Standard permission sets (combinations of specific permissions)
+
+Files / Directories:
+
+              read:          Read
+              write:         Write
+              list_folder:   List folder
+              read_ex:       Read, execute
+              change:        Change
+              profile:       = change + write_dacl
+              full:          Full access
+
+Printers:
+
+              print:         Print
+              man_printer:   Manage printer
+              man_docs:      Manage documents
+              full:          Full access
+
+Registry:
+
+              read:          Read
+              full:          Full access
+
+Service:
+
+              read:          Read
+              start_stop:    Start / Stop
+              full:          Full access
+
+Share:
+
+              read:          Read
+              change:        Change
+              full:          Full access
+
+b) Specific permissions
+
+Files / Directories:
+
+              traverse:      Traverse folder / execute file
+              list_dir:      List folder / read data
+              read_attr:     Read attributes
+              read_ea:       Read extended attributes
+              add_file:      Create files / write data
+              add_subdir:    Create folders / append data
+              write_attr:    Write attributes
+              write_ea:      Write extended attributes
+              del_child:     Delete subfolders and files
+              delete:        Delete
+              read_dacl:     Read permissions
+              write_dacl:    Write permissions
+              write_owner:   Take ownership
+
+Registry:
+
+              query_val:     Query value
+              set_val:       Set value
+              create_subkey: Create subkeys
+              enum_subkeys:  Enumerate subkeys
+              notify:        Notify
+              create_link:   Create link
+              delete:        Delete
+              write_dacl:    Write permissions
+              write_owner:   Take ownership
+              read_access:   Read control
