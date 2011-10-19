@@ -44,7 +44,7 @@ rem >>help.htm ECHO ^</CENTER^>
 
 >Readme.md ECHO # 1508 DEPLOYMENT UTILITY SCRIPTS
 >>Readme.md ECHO -------
->>Readme.md ECHO.Utilies used in the automated deployment of Developer enviroments.
+>>Readme.md ECHO.Utilities used in the automated deployment of Developer enviroments.
 >>Readme.md ECHO At 1508 we develop Sitecore CMS and Umbraco solutions, all client solutions are hosted on our QA servers and deployed from there to the local dev machines with the help of these utility scripts.
 >>Readme.md ECHO 
 >>Readme.md ECHO We hope you can find help and inspiration in these utilities.

@@ -4,7 +4,7 @@ REM @echo off
 REM 
 REM SET bin=\\QA\utilities\deployment
 REM 
-REM call "\\QA\utilities\deployment\SVN.checkout.bat" "http://svn/SEL1013.0201/trunk/src/website" "D:\solutions\SEL1013\website\"
+REM call "\\QA\utilities\deployment\SVN.checkout.bat" "http://svn/SEL1013.0201/trunk/src/website" "D:\solutions\SEL1013\selco.com\website\"
 REM 
 
 if "%~1"=="?" goto HELP
@@ -15,7 +15,7 @@ if "%~1"=="" goto INVALIDPARAMETERS
 if "%~2"=="" goto INVALIDPARAMETERS
 if exist "%~2\.svn" goto WARNING
 
-"%bin%\svn.exe" checkout %1 %2 --quiet
+"%bin%\Subversion Client\svn.exe" checkout %1 %2 --quiet
 GOTO:EOF
 
 :WARNING
@@ -26,7 +26,7 @@ GOTO:EOF
 
 :INVALIDPARAMETERS
 echo Script terminated: invalid parameters SVN.checkout.bat %*
-echo Example: call "\\QA\utilities\deployment\SVN.checkout.cmd" "http://svn/SEL1013.0201/trunk/src/website" "D:\solutions\SEL1013\website\"
+echo Example: call "\\QA\utilities\deployment\SVN.checkout.cmd" "http://svn/SEL1013.0201/trunk/src/website" "D:\solutions\SEL1013\selco.com\Website\"
 pause
 GOTO:EOF
 

@@ -14,7 +14,7 @@ if "%~1"=="" goto HELP
 if "%~1"=="" goto INVALIDPARAMETERS
 if "%~2"=="" goto INVALIDPARAMETERS
 
-"%bin%\svn.exe" export %1 %2 --force
+"%bin%\Subversion Client\svn.exe" export %1 %2 --force
 GOTO:EOF
 
 :INVALIDPARAMETERS

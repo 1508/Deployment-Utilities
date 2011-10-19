@@ -1,6 +1,6 @@
 # 1508 DEPLOYMENT UTILITY SCRIPTS
 -------
-Utilies used in the automated deployment of Developer environments.
+Utilities used in the automated deployment of Developer environments.
 At 1508 we develop Sitecore CMS and Umbraco solutions, all client solutions are hosted on our QA servers and deployed from there to the local dev machines with the help of these utility scripts.
 
 We hope you can find help and inspiration in these utilities.
