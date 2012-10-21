@@ -1,8 +1,8 @@
 # 1508 DEPLOYMENT UTILITY SCRIPTS
 -------
-Utilities used in the automated deployment of Developer environments.
+Utilities used in the automated deployment of Developer enviroments.
 At 1508 we develop Sitecore CMS and Umbraco solutions, all client solutions are hosted on our QA servers and deployed from there to the local dev machines with the help of these utility scripts.
-
+ECHO is off.
 We hope you can find help and inspiration in these utilities.
 See the sample for inspiration.
 
@@ -141,17 +141,44 @@ See the sample for inspiration.
 
 
 
+## IIS8.create.cmd
+
+
+  Creates IIS8 Website and App Pool
+
+  IIS8.CREATE webroot hostheader webname appname aspnetframework_regiis_path managedPipelineMode bin
+
+  webroot     Specifies the site path 
+  hostheader  Specifies the hostheader names (will always bind to :80)
+              Can be set empty and can set multiple by separating with comma
+  webname     Specifies the site name 
+  appname     Specifies the name of the application pool to bind to
+  aspnetframework_regiis_path
+              Specifies the path to the framework regiis file
+  managedPipelineMode 
+              Classic or Integrated (default is Classic)
+  bin         Specifies the folder for the global script utilities
+
+  Step 1:   Validate System
+  Step 2:   Create Configuration Backup 
+  Step 3:   If hostheader not provided Stops all other websites (W3SVC/x)
+  Step 4:   Create ApplicationPool  
+  Step 5:   Create Website  () 
+  Step 6:   Set Framework version on Application Pool Site
+
+
+
 ## IISx.create.cmd
 
  Choose system and redirect parameters to valid IIS system.
 
    IISx.create WEBROOT HOSTHEADER WEBNAME APPNAME ASPNETFRAMEWORK_REGIIS_PATH (managedPipelineMode)
 
-   HOSTHEADER           Can be comma separated but only IIS7 will interpret this. IIS6 will create separate websites for each hostheader
-   managedPipelineMode  Used by IIS7, default is classic but "Integrated" can be set for the website app pool.
+   HOSTHEADER           Can be comma separated but only IIS7 and IIS8 will interpret this. IIS6 will create separate websites for each hostheader
+   managedPipelineMode  Used by IIS7 and IIS8, default is classic but "Integrated" can be set for the website app pool.
 
  Example:
- .\IISx.create.bat"  "D:\SDU776.0507\WebSite" "sdu.local,sdunet.local" "SDU776 SDU Intranet" "SDU776 AppPool" "C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe"
+ .\IISx.create.bat"  "D:\SDU776.0507\WebSite" "sdu.local,sdunet.local" "SDU776 SDU Intranet" "SDU776 AppPool" "C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe"
 
 
 
@@ -291,6 +318,14 @@ Removes temporary ASP.NET files
   Build solution and start developer environment
    
    VS2010.build.cmd [solution filepath]
+
+
+
+## VS2012.build.cmd
+
+  Build solution and start developer environment
+   
+   VS2012.build.cmd [solution filepath]
 
 
 

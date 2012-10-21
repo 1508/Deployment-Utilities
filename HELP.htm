@@ -29,6 +29,8 @@
 </TD></TR>
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#IIS7.create.cmd">IIS7.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
 </TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#IIS8.create.cmd">IIS8.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#IISx.create.cmd">IISx.create.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
 </TD></TR>
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#IISx.vdir.cmd">IISx.vdir.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
@@ -62,6 +64,8 @@
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2008.build.cmd">VS2008.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
 </TD></TR>
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2010.build.cmd">VS2010.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
+</TD></TR>
+<TR><TH ALIGN="left" VALIGN="top"><A HREF="#VS2012.build.cmd">VS2012.build.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
 </TD></TR>
 <TR><TH ALIGN="left" VALIGN="top"><A HREF="#wait.cmd">wait.cmd</A></TH><TD>&nbsp;&nbsp;&nbsp;</TD><TD>
 </TD></TR>
@@ -256,6 +260,40 @@
 <P>&nbsp;</P>
 
 
+<A NAME="IIS8.create.cmd"></A>
+
+<H2>IIS8.create.cmd</H2>
+
+<PRE>
+
+  Creates IIS8 Website and App Pool
+
+  IIS8.CREATE webroot hostheader webname appname aspnetframework_regiis_path managedPipelineMode bin
+
+  webroot     Specifies the site path 
+  hostheader  Specifies the hostheader names (will always bind to :80)
+              Can be set empty and can set multiple by separating with comma
+  webname     Specifies the site name 
+  appname     Specifies the name of the application pool to bind to
+  aspnetframework_regiis_path
+              Specifies the path to the framework regiis file
+  managedPipelineMode 
+              Classic or Integrated (default is Classic)
+  bin         Specifies the folder for the global script utilities
+
+  Step 1:   Validate System
+  Step 2:   Create Configuration Backup 
+  Step 3:   If hostheader not provided Stops all other websites (W3SVC/x)
+  Step 4:   Create ApplicationPool  
+  Step 5:   Create Website  () 
+  Step 6:   Set Framework version on Application Pool Site
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
 <A NAME="IISx.create.cmd"></A>
 
 <H2>IISx.create.cmd</H2>
@@ -265,11 +303,11 @@
 
    IISx.create WEBROOT HOSTHEADER WEBNAME APPNAME ASPNETFRAMEWORK_REGIIS_PATH (managedPipelineMode)
 
-   HOSTHEADER           Can be comma separated but only IIS7 will interpret this. IIS6 will create separate websites for each hostheader
-   managedPipelineMode  Used by IIS7, default is classic but "Integrated" can be set for the website app pool.
+   HOSTHEADER           Can be comma separated but only IIS7 and IIS8 will interpret this. IIS6 will create separate websites for each hostheader
+   managedPipelineMode  Used by IIS7 and IIS8, default is classic but "Integrated" can be set for the website app pool.
 
  Example:
- .\IISx.create.bat"  "D:\SDU776.0507\WebSite" "sdu.local,sdunet.local" "SDU776 SDU Intranet" "SDU776 AppPool" "C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe"
+ .\IISx.create.bat"  "D:\SDU776.0507\WebSite" "sdu.local,sdunet.local" "SDU776 SDU Intranet" "SDU776 AppPool" "C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis.exe"
 
 </PRE>
 
@@ -521,6 +559,21 @@ Removes temporary ASP.NET files
   Build solution and start developer environment
    
    VS2010.build.cmd [solution filepath]
+</PRE>
+
+<A HREF="#Top"> Top</A>
+
+<P>&nbsp;</P>
+
+
+<A NAME="VS2012.build.cmd"></A>
+
+<H2>VS2012.build.cmd</H2>
+
+<PRE>
+  Build solution and start developer environment
+   
+   VS2012.build.cmd [solution filepath]
 </PRE>
 
 <A HREF="#Top"> Top</A>
